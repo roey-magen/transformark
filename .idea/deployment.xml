@@ -5,7 +5,7 @@
       <paths name="access3.wexac.weizmann.ac.il">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/labs/testing/class54/deployment/hidden " local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/labs/testing/class54/deployment/hidden" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

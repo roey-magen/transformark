@@ -1,3 +1,4 @@
+'''
 import torch.nn as nn
 from options import HiDDenConfiguration
 from model.conv_bn_relu import ConvBNRelu
@@ -25,3 +26,4 @@ class Discriminator(nn.Module):
         X = self.linear(X)
         # X = torch.sigmoid(X)
         return X
+'''
