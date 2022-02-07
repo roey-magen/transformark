@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="access3.wexac.weizmann.ac.il" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="access3.wexac.weizmann.ac.il">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/labs/testing/class54/deployment/hidden " local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="88820808-a0be-4adf-966b-45b7b155d85f" name="access3.wexac.weizmann.ac.il">
+        <fileTransfer accessType="SFTP" host="access3.wexac.weizmann.ac.il" port="22" sshConfigId="4e6873e6-b679-4521-8599-78faa56f0b8a" sshConfig="class54@access3.wexac.weizmann.ac.il:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
