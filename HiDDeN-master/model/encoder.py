@@ -2,6 +2,9 @@ import torch
 import torch.nn as nn
 from options import HiDDenConfiguration
 from model.conv_bn_relu import ConvBNRelu
+# from transformers import ViTFeatureExtractor, ViTModel
+# import requests
+from vit_pytorch import ViT
 
 
 class Encoder(nn.Module):
@@ -27,17 +30,41 @@ class Encoder(nn.Module):
 
         self.final_layer = nn.Conv2d(self.conv_channels, 3, kernel_size=1)
 
+        # self.feature_extractor = ViTFeatureExtractor.from_pretrained('facebook/dino-vits16') DINO
+        # self.model = ViTModel.from_pretrained('facebook/dino-vits16')
+
+        self.vit = ViT(image_size=(config.H, config.W),
+                       patch_size=32,
+                       num_classes= 128*128*3,
+                       dim=1024,
+                       depth=config.decoder_blocks // 2,
+                       heads=16,
+                       mlp_dim=2048,
+                       dropout=0.1,
+                       emb_dropout=0.1)
+
     def forward(self, image, message):
+        # inputs = self.feature_extractor(images=image, return_tensors="pt") \\DINO
+        # semantic_representation = self.model(**inputs)
 
         # First, add two dummy dimensions in the end of the message.
         # This is required for the .expand to work correctly
+
+        semantic_representation = self.vit(image)
+        semantic_representation = semantic_representation.reshape(image.shape)
+        assert semantic_representation.size() == image.size(), "semantic_representation should has same size as Image"
+        # print('semantic_representation size is: ', semantic_representation.size())
+        # print('image size is: ', image.size())
+
         expanded_message = message.unsqueeze(-1)
         expanded_message.unsqueeze_(-1)
 
         expanded_message = expanded_message.expand(-1,-1, self.H, self.W)
         encoded_image = self.conv_layers(image)
+        # print('encoded_image size', encoded_image.size())
+
         # concatenate expanded message and image
-        concat = torch.cat([expanded_message, encoded_image, image], dim=1)
+        concat = torch.cat([expanded_message, semantic_representation, image], dim=1)
         im_w = self.after_concat_layer(concat)
         im_w = self.final_layer(im_w)
         return im_w
