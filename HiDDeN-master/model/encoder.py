@@ -35,7 +35,7 @@ class Encoder(nn.Module):
 
         self.vit = ViT(image_size=(config.H, config.W),
                        patch_size=32,
-                       num_classes= 128*128*3,
+                       num_classes= 128*128*self.conv_channels,
                        dim=1024,
                        depth=config.decoder_blocks // 2,
                        heads=16,
@@ -51,8 +51,8 @@ class Encoder(nn.Module):
         # This is required for the .expand to work correctly
 
         semantic_representation = self.vit(image)
-        semantic_representation = semantic_representation.reshape(image.shape)
-        assert semantic_representation.size() == image.size(), "semantic_representation should has same size as Image"
+        semantic_representation = semantic_representation.reshape(image.shape[0],self.conv_channels,128,128)
+        #assert semantic_representation.size() == image.size(), "semantic_representation should has same size as Image"
         # print('semantic_representation size is: ', semantic_representation.size())
         # print('image size is: ', image.size())
 
