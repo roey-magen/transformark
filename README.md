@@ -11,3 +11,8 @@ For running results with various of noises and different models, look at the run
 <div align="center">
   <img width="100%" alt="Our First Attempt - with ViT" src=".github/vit_arch.png">
 </div>
+
+
+
+https://user-images.githubusercontent.com/22868723/173051338-a7edb9a9-f90c-4a01-98ac-0945fcb1f31c.mp4
+
